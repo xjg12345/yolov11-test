@@ -53,7 +53,7 @@ OpenDir选择data/images，Change Save Dir选择data/labels
 
 2. 使用labelme标注数据，打开目录选择data-seg/images，更改输出路径选择data-seg/json
 
-​	运行label_format-seg.py生成data-seg/labels
+​ 运行label_format-seg.py生成data-seg/labels
 
 7. 运行predict-seg.py、predict-seg-info.py开始评估
 
