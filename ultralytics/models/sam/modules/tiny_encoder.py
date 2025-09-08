@@ -10,7 +10,6 @@
 # --------------------------------------------------------
 
 import itertools
-from typing import Tuple
 
 import torch
 import torch.nn as nn
@@ -83,7 +82,7 @@ class PatchEmbed(nn.Module):
     def __init__(self, in_chans, embed_dim, resolution, activation):
         """Initializes patch embedding with convolutional layers for image-to-patch conversion and projection."""
         super().__init__()
-        img_size: Tuple[int, int] = to_2tuple(resolution)
+        img_size: tuple[int, int] = to_2tuple(resolution)
         self.patches_resolution = (img_size[0] // 4, img_size[1] // 4)
         self.num_patches = self.patches_resolution[0] * self.patches_resolution[1]
         self.in_chans = in_chans

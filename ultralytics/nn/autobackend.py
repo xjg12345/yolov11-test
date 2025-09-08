@@ -6,7 +6,7 @@ import platform
 import zipfile
 from collections import OrderedDict, namedtuple
 from pathlib import Path
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 import cv2
 import numpy as np
@@ -97,7 +97,7 @@ class AutoBackend(nn.Module):
     @torch.no_grad()
     def __init__(
         self,
-        weights: Union[str, List[str], torch.nn.Module] = "yolo11n.pt",
+        weights: Union[str, list[str], torch.nn.Module] = "yolo11n.pt",
         device: torch.device = torch.device("cpu"),
         dnn: bool = False,
         data: Optional[Union[str, Path]] = None,
