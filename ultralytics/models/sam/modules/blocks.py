@@ -3,7 +3,7 @@
 import copy
 import math
 from functools import partial
-from typing import Any, Optional, Tuple, Type, Union
+from typing import Any, Optional, Union
 
 import numpy as np
 import torch
@@ -295,7 +295,7 @@ class SAM2TwoWayAttentionBlock(TwoWayAttentionBlock):
         embedding_dim: int,
         num_heads: int,
         mlp_dim: int = 2048,
-        activation: Type[nn.Module] = nn.ReLU,
+        activation: type[nn.Module] = nn.ReLU,
         attention_downsample_rate: int = 2,
         skip_first_layer_pe: bool = False,
     ) -> None:
@@ -359,7 +359,7 @@ class SAM2TwoWayTransformer(TwoWayTransformer):
         embedding_dim: int,
         num_heads: int,
         mlp_dim: int,
-        activation: Type[nn.Module] = nn.ReLU,
+        activation: type[nn.Module] = nn.ReLU,
         attention_downsample_rate: int = 2,
     ) -> None:
         """
@@ -619,7 +619,7 @@ class MultiScaleBlock(nn.Module):
         mlp_ratio: float = 4.0,
         drop_path: float = 0.0,
         norm_layer: Union[nn.Module, str] = "LayerNorm",
-        q_stride: Tuple[int, int] = None,
+        q_stride: tuple[int, int] = None,
         act_layer: nn.Module = nn.GELU,
         window_size: int = 0,
     ):
@@ -853,7 +853,7 @@ class PositionEmbeddingRandom(nn.Module):
         # Outputs d_1 x ... x d_n x C shape
         return torch.cat([torch.sin(coords), torch.cos(coords)], dim=-1)
 
-    def forward(self, size: Tuple[int, int]) -> torch.Tensor:
+    def forward(self, size: tuple[int, int]) -> torch.Tensor:
         """Generates positional encoding for a grid using random spatial frequencies."""
         h, w = size
         device: Any = self.positional_encoding_gaussian_matrix.device
@@ -866,7 +866,7 @@ class PositionEmbeddingRandom(nn.Module):
         pe = self._pe_encoding(torch.stack([x_embed, y_embed], dim=-1))
         return pe.permute(2, 0, 1)  # C x H x W
 
-    def forward_with_coords(self, coords_input: torch.Tensor, image_size: Tuple[int, int]) -> torch.Tensor:
+    def forward_with_coords(self, coords_input: torch.Tensor, image_size: tuple[int, int]) -> torch.Tensor:
         """Positionally encodes input coordinates, normalizing them to [0,1] based on the given image size."""
         coords = coords_input.clone()
         coords[:, :, 0] = coords[:, :, 0] / image_size[1]
@@ -907,12 +907,12 @@ class Block(nn.Module):
         num_heads: int,
         mlp_ratio: float = 4.0,
         qkv_bias: bool = True,
-        norm_layer: Type[nn.Module] = nn.LayerNorm,
-        act_layer: Type[nn.Module] = nn.GELU,
+        norm_layer: type[nn.Module] = nn.LayerNorm,
+        act_layer: type[nn.Module] = nn.GELU,
         use_rel_pos: bool = False,
         rel_pos_zero_init: bool = True,
         window_size: int = 0,
-        input_size: Optional[Tuple[int, int]] = None,
+        input_size: Optional[tuple[int, int]] = None,
     ) -> None:
         """
         Initializes a transformer block with optional window attention and relative positional embeddings.
@@ -1013,7 +1013,7 @@ class REAttention(nn.Module):
         qkv_bias: bool = True,
         use_rel_pos: bool = False,
         rel_pos_zero_init: bool = True,
-        input_size: Optional[Tuple[int, int]] = None,
+        input_size: Optional[tuple[int, int]] = None,
     ) -> None:
         """
         Initializes a Relative Position Attention module for transformer-based architectures.
@@ -1094,9 +1094,9 @@ class PatchEmbed(nn.Module):
 
     def __init__(
         self,
-        kernel_size: Tuple[int, int] = (16, 16),
-        stride: Tuple[int, int] = (16, 16),
-        padding: Tuple[int, int] = (0, 0),
+        kernel_size: tuple[int, int] = (16, 16),
+        stride: tuple[int, int] = (16, 16),
+        padding: tuple[int, int] = (0, 0),
         in_chans: int = 3,
         embed_dim: int = 768,
     ) -> None:
