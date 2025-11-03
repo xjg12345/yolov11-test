@@ -2,7 +2,7 @@
 
 import inspect
 from pathlib import Path
-from typing import Any, Dict, List, Union
+from typing import Any, Union
 
 import numpy as np
 import torch
@@ -499,7 +499,7 @@ class Model(torch.nn.Module):
         stream: bool = False,
         predictor=None,
         **kwargs: Any,
-    ) -> List[Results]:
+    ) -> list[Results]:
         """
         Performs predictions on the given image source using the YOLO model.
 
@@ -560,7 +560,7 @@ class Model(torch.nn.Module):
         stream: bool = False,
         persist: bool = False,
         **kwargs: Any,
-    ) -> List[Results]:
+    ) -> list[Results]:
         """
         Conducts object tracking on the specified input source using the registered trackers.
 
@@ -879,7 +879,7 @@ class Model(torch.nn.Module):
         return self
 
     @property
-    def names(self) -> Dict[int, str]:
+    def names(self) -> dict[int, str]:
         """
         Retrieves the class names associated with the loaded model.
 
