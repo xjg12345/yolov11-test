@@ -1,7 +1,7 @@
-train: datasets-seg/train/images  # train images (relative to 'path') 128 images
-val: datasets-seg/val/images  # val images (relative to 'path') 128 images
+train: datasets-seg/train/images # train images (relative to 'path') 128 images
+val: datasets-seg/val/images # val images (relative to 'path') 128 images
 
 nc: 2
 
 # Classes
-names: [ 'cat', 'dog' ]
+names: ["cat", "dog"]

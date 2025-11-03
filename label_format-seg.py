@@ -10,7 +10,7 @@ label_to_class_id = {
 
 def convert_labelme_json_to_yolo(json_file, output_dir):
     try:
-        with open(json_file, 'r') as f:
+        with open(json_file) as f:
             labelme_data = json.load(f)
 
         img_width = labelme_data["imageWidth"]
@@ -19,10 +19,10 @@ def convert_labelme_json_to_yolo(json_file, output_dir):
         file_name = os.path.splitext(os.path.basename(json_file))[0]
         txt_path = os.path.join(output_dir, f"{file_name}.txt")
 
-        with open(txt_path, 'w') as txt_file:
-            for shape in labelme_data['shapes']:
-                label = shape['label']
-                points = shape['points']
+        with open(txt_path, "w") as txt_file:
+            for shape in labelme_data["shapes"]:
+                label = shape["label"]
+                points = shape["points"]
 
                 if not points:
                     continue
